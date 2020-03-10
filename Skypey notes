@@ -1,0 +1,69 @@
+Skypey notes:
+
+CRUD: Creating, Reading, Updating and Deleting. Tenemos que tener ojo de dejar los objetos sobre los que queremos hacer estas acciones a mano en el estado.
+
+En general vamos a querer el state object no anidado, y en vez de listas, representar el estado solo con objetos.
+
+contacts: {
+	user_id: {
+		name,
+		email,
+		profile_pic,
+		status,
+		user_id
+	},
+	user_id_2: {
+		name,
+		email,
+		profile_pic,
+		status,
+		user_id_2
+	}
+}
+
+messages: {
+	user_id: {
+		0: {
+			text,
+			is_user_msg
+		},
+		1: {
+			text,
+			is_user_msg
+		}
+	},
+	user_id_2: {
+		0: {
+			text,
+			is_user_msg
+		}
+	}
+}
+
+
+Para iterar sobre estos mensajes se utiliza lodash:
+
+Opción 1: hacer map sobre el objeto
+
+//import the library
+import _ from "lodash"
+
+//use it
+_.map(users, (user) => {
+	return <User />
+})
+
+Opción 2: convertir el objeto a una lista
+
+const users = this.props.users; //this is an object.
+
+_.values(users).map(user => {
+	return <User />
+})
+
+
+Para mantener el orden del objeto, se puede guardar un array con las llaves del objeto:
+numbersOrderIDs: [0, 3, 1, 6, 89, 5, 7, 9]
+
+
+
